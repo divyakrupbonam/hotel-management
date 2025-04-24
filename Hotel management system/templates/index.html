@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Management System</title>
+    <!-- Bootstrap CSS for styling -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Example: Playfair Display and Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <header class="bg-primary text-white text-center py-4">
+            <h1>Welcome to Our Hotel</h1>
+            <p>Your comfort is our priority</p>
+        </header>
+
+        <!-- Flash messages for check-in/out actions -->
+        {% with messages = get_flashed_messages() %} {% if messages %}
+        <div class="alert alert-info text-center" role="alert">
+            {% for message in messages %} {{ message }} {% endfor %}
+        </div>
+        {% endif %} {% endwith %}
+
+        <section class="room-list my-5">
+            <div class="row">
+                {% for room_num, details in rooms.items() %}
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-lg">
+                        <img src="{{ details.image }}" class="card-img-top" alt="Room {{ room_num }}">
+
+                        <div class="card-body">
+                            <h5 class="card-title">Room {{ room_num }}</h5>
+                            <p class="card-text">Price: ${{ details.price }}</p>
+                            <p class="card-text">Status: {{ details.status }}</p>
+                            {% if details.status == 'Available' %}
+                            <form action="{{ url_for('check_in') }}" method="POST">
+                                <input type="hidden" name="room_num" value="{{ room_num }}">
+                                <div class="mb-2">
+                                    <input type="text" name="guest_name" class="form-control" placeholder="Guest Name" required>
+                                </div>
+                                <button type="submit" class="btn btn-success">Check In</button>
+                            </form>
+                            {% else %}
+                            <p>Guest: {{ details.guest_name }}</p>
+                            <form action="{{ url_for('check_out') }}" method="POST">
+                                <input type="hidden" name="room_num" value="{{ room_num }}">
+                                <button type="submit" class="btn btn-danger">Check Out</button>
+                            </form>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <footer class="bg-dark text-white text-center py-4">
+            <p>&copy; 2025 Hotel Management System | All rights reserved</p>
+
+            <p>Contact us: <a href="mailto:support@hotel.com" class="text-info">support@hotel.com</a> | Phone: <a href="tel:+1234567890" class="text-info">+1 234 567 890</a></p>
+
+            <div class="social-icons mt-2">
+                <a href="https://facebook.com" class="text-white mx-2" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com" class="text-white mx-2" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://instagram.com" class="text-white mx-2" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://linkedin.com" class="text-white mx-2" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

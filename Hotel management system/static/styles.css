@@ -1,0 +1,136 @@
+/* Global Styles */
+
+body {
+    /* blue fallback */
+    background-image: url('https://i.pinimg.com/474x/9b/04/4e/9b044e934c6fdc93725a403af9615421.jpg');
+    background-size: cover;
+    /* cover full viewport */
+    background-position: center center;
+    /* center it */
+    background-repeat: no-repeat;
+    font-family: Arial, sans-serif;
+}
+
+
+/* Header */
+
+header {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    background-image: url('https://i.pinimg.com/474x/05/dc/56/05dc56a6b66ff62b70cd9a3ae1ad49c2.jpg');
+    background-size: cover;
+    /* ensure it fills the header */
+    background-position: center center;
+    /* center the image */
+    background-repeat: no-repeat;
+    height: 400px;
+    /* set a fixed height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* vertically center content */
+    align-items: center;
+    /* horizontally center content */
+    color: white;
+    font-family: 'Playfair Display', serif;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+    margin-bottom: 3rem;
+    /* space below header */
+}
+
+
+/* Card Style */
+
+.card {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    backdrop-filter: blur(10px);
+    /* glass blur */
+    -webkit-backdrop-filter: blur(10px);
+    /* Safari support */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 30px 50px;
+    border-radius: 20px;
+    color: white;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    transform: scale(1.05);
+    /* Slight zoom */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.card-body {
+    text-align: center;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+input.form-control {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-radius: 10px;
+    padding: 10px 15px;
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+input.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+
+/* Button Styling */
+
+.btn-success {
+    background-color: #28a745;
+    border: none;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border: none;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
+
+
+/* Alert Styles for Flash Messages */
+
+.alert-info {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+
+/* Footer */
+
+footer {
+    width: 100vw;
+    /* Full screen width */
+    margin-left: calc(-50vw + 50%);
+    /* Offset to align with center of screen */
+    background-color: #343a40;
+    color: white;
+    padding: 20px;
+    margin-top: 20px;
+    text-align: center;
+}
